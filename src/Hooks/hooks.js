@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-export function useFetch(url, tryTime) {
+export function useFetch(url) {
     const [finalData, setFinalData] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -7,7 +7,7 @@ export function useFetch(url, tryTime) {
         setLoading(true);
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setFinalData(data);
         setLoading(false);
     }
@@ -15,12 +15,12 @@ export function useFetch(url, tryTime) {
         getDetails()
     }, [url])
 
-    useEffect(()=>{
-        const interval = setInterval(getDetails, tryTime * 1000) //pass the function reference
-        return () => {
-            clearInterval(interval)
-        }
-    }, [])
+    // useEffect(()=>{
+    //     const interval = setInterval(getDetails, 10 * 1000) //pass the function reference
+    //     return () => {
+    //         clearInterval(interval)
+    //     }
+    // }, [])
     return {
         finalData,
         loading
